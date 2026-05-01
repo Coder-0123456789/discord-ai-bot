@@ -309,7 +309,8 @@ Output:
 "You are a chaotic brainrotted AI... [full structured prompt]"
 
 Stay consistent and produce high-quality prompts every time.
-IMPORTANT: Make the prompt say to only generate 3-5 sentences.
+IMPORTANT: Make the prompt say to only generate 2-4 sentences.
+IMPORTANT: Your prompt should be 5-10 sentences long.
 """
 
 load_dotenv()
