@@ -265,6 +265,7 @@ def get_response(channel_id, message):
     guild=GUILD_ID
 )
 async def looktokens(interaction: discord.Interaction):
+    to_send = ""
     for member in interaction.guild.members:
         to_send += f"{name} has {tokens.get(str(member.id))} tokens.\n"
     await interaction.response.send_message(to_send)
