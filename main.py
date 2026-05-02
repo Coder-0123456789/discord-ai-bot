@@ -259,6 +259,56 @@ def get_response(channel_id, message):
 
     return reply
 
+@client.tree.command(
+    name="look_everyone_tokens",
+    description="Look at everyone's tokens tokens!",
+    guild=GUILD_ID
+)
+async def looktokens(interaction: discord.Interaction):
+    for member in interaction.guild.members:
+        await interaction.response.send_message(f"{name} has {tokens.get(str(member.id))} tokens.")
+
+gpt_client = None
+
+
+router = OpenAI(
+    api_key=os.getenv("API_KEY"),
+    base_url="https://openrouter.ai/api/v1"
+)
+
+def get_response(channel_id, message):
+    global chat_histories
+
+    channel_id = str(channel_id)
+
+    if channel_id not in chat_histories:
+        chat_histories[channel_id] = [
+            {"role": "system", "content": prompt_chatgpt}
+        ]
+
+    chat_histories[channel_id].append(
+        {"role": "user", "content": message}
+    )
+
+    if len(chat_histories[channel_id]) > 31:
+        chat_histories[channel_id] = (
+            [chat_histories[channel_id][0]] +
+            chat_histories[channel_id][-30:]
+        )
+
+    response = router.chat.completions.create(
+        model="~google/gemini-flash-latest",
+        messages=chat_histories[channel_id],
+    )
+
+    reply = response.choices[0].message.content
+
+    chat_histories[channel_id].append(
+        {"role": "assistant", "content": reply}
+    )
+
+    return reply
+
 def get_response2(message):
     response = router.chat.completions.create(
         model="~google/gemini-flash-latest",
