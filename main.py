@@ -176,7 +176,7 @@ async def getmessage(interaction: discord.Interaction, mood: str):
 
         save_tokens()
 
-        await interaction.followup.send(embed=embed)
+        await interaction.followup.send(f"Mood changed to {mood}.", ephemeral=True)
 
 
     except Exception as e:
