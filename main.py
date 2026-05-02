@@ -69,7 +69,7 @@ intents.reactions = True
 intents.voice_states = True
 client = Client(command_prefix="!", intents=intents)
 
-GUILD_ID = discord.Object(id=1499549746526949506)
+GUILD_ID = discord.Object(id=1500274236386836590)
 
 # @client.tree.command(
 #     name="setapikey",
