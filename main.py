@@ -270,6 +270,18 @@ async def looktokens(interaction: discord.Interaction):
         to_send += f"{member.name} has {tokens.get(str(member.id))} tokens.\n"
     await interaction.response.send_message(to_send)
 
+@client.tree.command(
+    name="timeout u-sucks",
+    description="Timeout everyone with the u suck role(ADMIN-ONLY!!!)",
+    guild=GUILD_ID
+)
+async def timeout(interaction: discord.Interaction):
+    for member in interaction.guild.members:
+        role = GUILD_ID.get_role(1500283907340243004)
+        if role in member.roles:
+            await member.timeout(datetime.timedelta(seconds=30), reason="Y not")
+    await interaction.response.send_message("Timouted", ephemeral=True)
+
 gpt_client = None
 
 
