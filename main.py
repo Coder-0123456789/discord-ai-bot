@@ -271,7 +271,7 @@ async def looktokens(interaction: discord.Interaction):
     await interaction.response.send_message(to_send)
 
 @client.tree.command(
-    name="timeout u-sucks",
+    name="timeout_u-sucks",
     description="Timeout everyone with the u suck role(ADMIN-ONLY!!!)",
     guild=GUILD_ID
 )
