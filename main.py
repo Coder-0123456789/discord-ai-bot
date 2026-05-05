@@ -311,7 +311,7 @@ def get_response(channel_id, message):
         )
 
     response = router.chat.completions.create(
-        model="~google/gemini-flash-latest",
+        model="google/gemini-3.1-flash-lite-preview",
         messages=chat_histories[channel_id],
     )
 
